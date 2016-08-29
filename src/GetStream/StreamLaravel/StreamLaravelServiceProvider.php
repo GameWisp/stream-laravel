@@ -45,9 +45,9 @@ class StreamLaravelServiceProvider extends ServiceProvider {
 		$this->app['feed_manager'] = $this->app->share(function($app)
         {
 
-        	$manager_class = $app['config']->get('stream-laravel::feed_manager_class');
-        	$api_key = $app['config']->get('stream-laravel::api_key');
-        	$api_secret = $app['config']->get('stream-laravel::api_secret');
+        	$manager_class = $app['config']->get('stream-laravel.feed_manager_class');
+        	$api_key = $app['config']->get('stream-laravel.api_key');
+        	$api_secret = $app['config']->get('stream-laravel.api_secret');
 
             return new $manager_class($api_key, $api_secret, $this->app['config']);
         });
@@ -69,7 +69,7 @@ class StreamLaravelServiceProvider extends ServiceProvider {
 	        $config     = array_replace_recursive($config, $userConfig);
 	    }
 
-	    $namespace = 'stream-laravel::';
+	    $namespace = 'stream-laravel.';
 
 	    foreach($config as $key => $value) {
 	    	$this->app['config']->set($namespace . $key , $value);
